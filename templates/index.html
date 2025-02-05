@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="container py-4">
+    <h1 class="text-center mb-2">Ninja Gold</h1>
+    
+    <!-- Gold Display & Reset Button -->
+    <div class="mb-2 text-center">
+        <span class="my-2 text-white custom-gold-text">
+            <i class="bi bi-currency-bitcoin gold-icon"></i> Your Gold: <strong>{{ session['gold'] }}</strong> 
+        </span>
+        <form action="/reset" method="post" class="d-inline-block">
+            <button type="submit" class="btn btn-danger btn-sm ms-3">Reset</button>
+        </form>
+    </div>
+
+    <!-- Form Cards for Different Buildings -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-4">
+        <div class="col">
+            <form action="/process_money" method="post" class="card shadow-sm h-100">
+                <div class="card-header text-center">
+                    <img class="gold-icon" height="40px" width="40px" src="{{url_for('static', filename="img/farm-image.png")}}" alt="cave-icon">
+                    <h4>Farm</h4>
+                </div>
+                <div class="card-body text-center">
+                    <p>(earn 10-20 golds)</p>
+                    <input type="hidden" name="building" value="farm" />
+                    <input type="hidden" name="min" value="10" />
+                    <input type="hidden" name="max" value="20" />
+                    <input type="submit" value="Find Gold!" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col">
+            <form action="/process_money" method="post" class="card shadow-sm h-100">
+                <div class="card-header text-center">
+                    <img class="gold-icon" height="40px" width="40px" src="{{url_for('static', filename="img/cave-image2.png")}}" alt="cave-icon">
+                    <h4>Cave</h4>
+                </div>
+                <div class="card-body text-center">
+                    <p>(earn 5-10 golds)</p>
+                    <input type="hidden" name="building" value="cave" />
+                    <input type="hidden" name="min" value="5" />
+                    <input type="hidden" name="max" value="10" />
+                    <input type="submit" value="Find Gold!" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col">
+            <form action="/process_money" method="post" class="card shadow-sm h-100">
+                <div class="card-header text-center">
+                    <img class="gold-icon" height="40px" width="40px" src="{{url_for('static', filename="img/home-image.png")}}" alt="cave-icon">
+                    <h4>House</h4>
+                </div>
+                <div class="card-body text-center">
+                    <p>(earn 2-5 golds)</p>
+                    <input type="hidden" name="building" value="house" />
+                    <input type="hidden" name="min" value="2" />
+                    <input type="hidden" name="max" value="5" />
+                    <input type="submit" value="Find Gold!" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col">
+            <form action="/process_money" method="post" class="card shadow-sm h-100">
+                <div class="card-header text-center">
+                    <img class="gold-icon" height="40px" width="40px" src="{{url_for('static', filename="img/casion-image.png")}}" alt="cave-icon">
+                    <h4>Casino</h4>
+                </div>
+                <div class="card-body text-center">
+                    <p>(earn 0-50 golds)</p>
+                    <input type="hidden" name="building" value="casino" />
+                    <input type="hidden" name="min" value="-50" />
+                    <input type="hidden" name="max" value="50" />
+                    <input type="submit" value="Find Gold!" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Activities Section -->
+    <section class="card shadow-sm mb-4">
+        <div class="card-header">
+            <p class="mb-0">Activities Log</p>
+        </div>
+        <div class="card-body activity-log">
+            {% for log in activites %}
+                <p class="lead {{ log.color }}">Earned {{ log.earnedGold }} golds from the {{ log.building }} at ({{ log.creationTime }})</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

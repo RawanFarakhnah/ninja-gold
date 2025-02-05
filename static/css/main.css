@@ -1,0 +1,64 @@
+body {
+    background-size: cover;
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
+    background-image: url("../img/mountinse.jpg");
+}
+h1 {
+    font-weight: 600;
+    color: #fff;
+}
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+.activity-log {
+    max-height: 130px;
+    min-height: 130px;
+    overflow-y: scroll;
+}
+.activity-log p {
+    font-size: 14px;
+}
+.text-center {
+    text-align: center;
+}
+.btn-primary {
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+}
+.btn-danger {
+    background-color: #f77c7c;
+    border-color: #f77c7c;
+}
+.card-header {
+    background-color: #f4f4f4;
+}
+.card-body p {
+    font-size: 16px;
+}
+.custom-gold-text {
+  font-size: 1.5rem; 
+  font-weight: 600;
+}
+
+.gold-icon {
+    font-size: 1.5em;
+    color: #FFD700;
+}
+.card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
+.activity-log p {
+    font-size: 1.1em;
+}
